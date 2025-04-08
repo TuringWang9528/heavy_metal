@@ -2,6 +2,7 @@ import streamlit as st
 import joblib
 import numpy as np
 import pandas as pd
+import shap
 
 # 加载模型
 model = joblib.load('Model.pkl')
