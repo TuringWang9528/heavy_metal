@@ -61,6 +61,9 @@ Adsorption_time = st.number_input("Adsorption time(min):", min_value=0.00, max_v
 feature_values = [C,H,O,N,ONC,OC,HC,Ash, SSA, Pore_volume, HMC,Stirring_speed,Volume,Biochar_concentration,Adsorption_temperature,Adsorption_time]
 features = np.array([feature_values])
 
+# 特征名称列表
+feature_names = ["C", "H", "O", "N", "(O+N)/C", "O/C", "H/C", "Ash", "SSA", "Pore volume", "HMC", "Stirring speed", "Volume", "Biochar concentration", "Adsorption temperature", "Adsorption time"]
+
 if st.button("Predict"):
     # 预测类别和概率
     predicted_proba = model.predict(features)
@@ -70,8 +73,9 @@ if st.button("Predict"):
     
     # Calculate SHAP values and display force plot
     explainer = shap.TreeExplainer(model)
-    shap_values = explainer.shap_values(pd.DataFrame([feature_values], columns=feature_names))
-
+    shap_values = explainer.shap_values(pd.DataFrame(features, columns=feature_names))
+    
+    shap.initjs()  # 初始化 JS
     shap.force_plot(explainer.expected_value, shap_values[0], pd.DataFrame([feature_values], columns=feature_names), matplotlib=True)
     plt.savefig("shap_force_plot.png", bbox_inches='tight', dpi=1200)
 
