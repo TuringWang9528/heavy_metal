@@ -63,7 +63,7 @@ features = np.array([feature_values])
 
 if st.button("Predict"):
     # 预测类别和概率
-    predicted_proba = model.predict_proba(features)
+    predicted_proba = model.predict(features)
 
     # 显示预测结果
     st.write(f"**Adsorption capacity:** {predicted_proba}(mg/g)")
