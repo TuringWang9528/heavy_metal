@@ -3,6 +3,7 @@ import joblib
 import numpy as np
 import pandas as pd
 import shap
+import matplotlib.pyplot as plt
 
 # 加载模型
 model = joblib.load('Model.pkl')
