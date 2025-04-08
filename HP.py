@@ -76,7 +76,6 @@ if st.button("Predict"):
     explainer = shap.TreeExplainer(model)
     shap_values = explainer.shap_values(pd.DataFrame(features, columns=feature_names))
     
-    shap.initjs()  # 初始化 JS
     shap.force_plot(explainer.expected_value, shap_values[0], pd.DataFrame([feature_values], columns=feature_names), matplotlib=True)
     plt.savefig("shap_force_plot.png", bbox_inches='tight', dpi=1200)
 
