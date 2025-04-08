@@ -71,7 +71,7 @@ if st.button("Predict"):
     predicted_proba = model.predict(features)
 
     # 显示预测结果
-    st.write(f"**Adsorption capacity:** {predicted_proba}(mg/g)")
+    st.write(f"**Adsorption capacity:** {predicted_proba} mg/g")
     
     # Calculate SHAP values and display force plot
     explainer = shap.TreeExplainer(model)
